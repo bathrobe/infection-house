@@ -4,7 +4,7 @@ import { getAllPosts } from "../../lib/getAllPosts";
 export default function Post({ WPpost, GApost }) {
   return (
     <div>
-      <h1>{WPpost?.title?.rendered}</h1>
+      <h1>{WPpost[0]?.title?.rendered}</h1>
       {/* <p>
         {GApost?.description
           ? GApost?.description
