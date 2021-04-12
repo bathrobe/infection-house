@@ -57,7 +57,6 @@ export const getStaticProps = async ({ params }) => {
   return {
     props: {
       WPpost,
-      GApost,
     },
   };
 };
