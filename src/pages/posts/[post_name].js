@@ -4,7 +4,7 @@ import { getAllPosts } from "../../lib/getAllPosts";
 export default function Post({ WPpost, GApost }) {
   return (
     <div>
-      <h1>{GApost?.name ? GApost?.name : "Couldn't find title"}</h1>
+      <h1>{WPpost?.title?.rendered}</h1>
       <p>
         {GApost?.description
           ? GApost?.description
@@ -50,9 +50,6 @@ export const getStaticProps = async ({ params }) => {
   }
   const WPpost = await fetcher(
     `https://infectionhouse.com/wp-json/wp/v2/posts?slug=${params.post_name}`
-  );
-  const GApost = await fetcher(
-    `https://infectionhouse.com/wp-json/guest-author/posts?name=${params.post_name}`
   );
   // const author = await fetcher(
   //   `https://infectionhouse.com//wp-json/guest-author/authors?id=${params.guest_author?.id}`
