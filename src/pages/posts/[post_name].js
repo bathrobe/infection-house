@@ -5,11 +5,11 @@ export default function Post({ WPpost, GApost }) {
   return (
     <div>
       <h1>{WPpost?.title?.rendered}</h1>
-      <p>
+      {/* <p>
         {GApost?.description
           ? GApost?.description
           : "Couldn't find description"}
-      </p>
+      </p> */}
     </div>
   );
 }
