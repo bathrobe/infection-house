@@ -4,8 +4,12 @@ import { getAllPosts } from "../../lib/getAllPosts";
 export default function Post({ WPpost, GApost }) {
   return (
     <div>
-      <h1>{GApost.name}</h1>
-      <p>{GApost.description}</p>
+      <h1>{GApost?.name ? GApost?.name : "Couldn't find title"}</h1>
+      <p>
+        {GApost?.description
+          ? GApost?.description
+          : "Couldn't find description"}
+      </p>
     </div>
   );
 }
