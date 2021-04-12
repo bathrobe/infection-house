@@ -2,7 +2,6 @@ import { fetcher } from "../../lib/fetcher";
 import { getAllPosts } from "../../lib/getAllPosts";
 
 export default function Post({ WPpost, GApost }) {
-  console.log(GApost.post_name, WPpost.slug);
   return (
     <div>
       <h1>{GApost.name}</h1>
