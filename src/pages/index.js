@@ -21,7 +21,7 @@ export default function Home({ authors, allPosts }) {
                 </h1>
                 <p>{p.post_date}</p>
                 <h4>
-                  <Link href={`/authors/${p.guest_author.slug}`}>
+                  <Link href={`/authors/${p.guest_author.id}`}>
                     <a>{p.guest_author.name}</a>
                   </Link>
                 </h4>
