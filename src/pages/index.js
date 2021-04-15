@@ -15,15 +15,13 @@ export default function Home({ authors, allPosts }) {
             return (
               <div>
                 <h1>
-                  <Link href={`/posts/${p.post_name}`}>
+                  <Link href={`/posts/${p.guest_author.id}/${p.post_name}`}>
                     <a>{p.post_title}</a>
                   </Link>
                 </h1>
                 <p>{p.post_date}</p>
                 <h4>
-                  <Link href={`/authors/${p.guest_author.id}`}>
-                    <a>{p.guest_author.name}</a>
-                  </Link>
+                  <p>{p.guest_author.name}</p>
                 </h4>
               </div>
             );

@@ -1,7 +1,7 @@
-import { fetcher } from "../../lib/fetcher";
-import { getAllPosts } from "../../lib/getAllPosts";
+import { fetcher } from "../../../lib/fetcher";
+import { getAllPosts } from "../../../lib/getAllPosts";
 
-export default function Author({ author, posts }) {
+export default function Post({ author, post }) {
   function createMarkup(descrip) {
     return { __html: descrip };
   }
@@ -14,14 +14,7 @@ export default function Author({ author, posts }) {
       <hr />
       <h2></h2>
       <div>
-        <p>
-          {posts.length > 1
-            ? posts.map((p) => {
-                return <>{p.post_name}</>;
-              })
-            : ""}
-        </p>
-        {posts.map((p) => {
+        {/* {posts.map((p) => {
           return (
             <>
               <h1>{p.post_title}</h1>
@@ -31,7 +24,7 @@ export default function Author({ author, posts }) {
               <div dangerouslySetInnerHTML={createMarkup(p.post_content)} />
             </>
           );
-        })}
+        })} */}
       </div>
     </div>
   );
@@ -41,9 +34,13 @@ export const getStaticPaths = async () => {
   const authors = await fetcher(
     "https://infectionhouse.com/wp-json/guest-author/authors"
   );
+  const allPosts = await getAllPosts(authors);
+
   return {
-    paths: authors.map((a) => {
-      return { params: { id: a.id.toString() } };
+    paths: allPosts.map((p) => {
+      return {
+        params: { id: p.guest_author.id.toString(), post_name: p.post_name },
+      };
     }),
     fallback: false, // fallback is set to false because we already know the slugs ahead of time
   };
@@ -60,13 +57,13 @@ export const getStaticProps = async ({ params }) => {
   const author = await fetcher(
     `https://infectionhouse.com/wp-json/guest-author/authors?id=${params.id}`
   );
-  const posts = await fetcher(
-    `https://infectionhouse.com/wp-json/guest-author/posts?id=${params.id}&withauthor=true`
+  const post = await fetcher(
+    `https://infectionhouse.com/wp-json/wp/v2/posts?slug=${params.post_name}`
   );
   return {
     props: {
       author,
-      posts,
+      post,
     },
   };
 };
