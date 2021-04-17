@@ -1,30 +1,42 @@
 import { fetcher } from "../../../lib/fetcher";
 import { getAllPosts } from "../../../lib/getAllPosts";
-
+import Layout from "../../../components/Layout";
+import dayjs from "dayjs";
 export default function Post({ author, post, loc, cat }) {
   function createMarkup(descrip) {
     return { __html: descrip };
   }
   const { name, description, avatar_url } = author;
   return (
-    <div>
-      <h1 dangerouslySetInnerHTML={createMarkup(post[0].title.rendered)} />
-      <p>{post[0].date}</p>
-      <p>{name}</p>
-      <p>{loc.name}</p>
-      <p>{cat.name}</p>
-      <img src={post[0].jetpack_featured_media_url} />
-      <div dangerouslySetInnerHTML={createMarkup(post[0].excerpt?.rendered)} />
-      <div dangerouslySetInnerHTML={createMarkup(post[0].content?.rendered)} />
-
-      <div>
-        <hr />
-        <h1>{name}</h1>
-        <img src={avatar_url} />
-        <div dangerouslySetInnerHTML={createMarkup(description)} />
-        <hr />
-      </div>
-    </div>
+    <Layout>
+      <main className="max-w-5xl mx-auto my-16">
+        <h1
+          className="text-5xl font-bold my-4"
+          dangerouslySetInnerHTML={createMarkup(post[0].title.rendered)}
+        />
+        <p className="text-lg my-2"></p>
+        <p className="text-lg">
+          {dayjs(post[0].date).format("MM-DD-YY")} // {cat.name} - {loc.name}
+        </p>
+        <p className="uppercase text-lg my-4">{name}</p>{" "}
+        <div className="flex"></div>
+        <img height="500px" src={post[0].jetpack_featured_media_url} />
+        <div
+          className="my-4 text-xl mx-4"
+          dangerouslySetInnerHTML={createMarkup(post[0].content?.rendered)}
+        />
+        <hr className="my-16" />
+        <div>
+          <div className="flex items-center">
+            <img src={avatar_url} />{" "}
+            <div className="ml-6">
+              <h1 className="text-2xl mb-4">{name}</h1>
+              <div dangerouslySetInnerHTML={createMarkup(description)} />
+            </div>
+          </div>
+        </div>
+      </main>
+    </Layout>
   );
 }
 
