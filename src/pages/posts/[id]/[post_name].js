@@ -27,9 +27,9 @@ export default function Post({ author, post, loc, cat }) {
         />
         <hr className="my-16" />
         <div>
-          <div className="flex items-center">
+          <div className="md:flex md:items-center">
             <img src={avatar_url} />{" "}
-            <div className="ml-6">
+            <div className="md:ml-6">
               <h1 className="text-2xl mb-4">{name}</h1>
               <div dangerouslySetInnerHTML={createMarkup(description)} />
             </div>
