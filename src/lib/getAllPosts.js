@@ -9,5 +9,16 @@ export const getAllPosts = async (auths) => {
     );
     allPosts.push(...posts);
   }
-  return allPosts;
+  for (const post of allPosts) {
+    const wpPost = await fetcher(
+      `https://infectionhouse.com/wp-json/wp/v2/posts?slug=${post.post_name}`
+    );
+    //loc and category ids
+    const loc = await fetcher(
+      `https://infectionhouse.com/wp-json/wp/v2/location/${wpPost[0].location[0]}`
+    );
+    post.location = loc;
+
+    return allPosts;
+  }
 };
