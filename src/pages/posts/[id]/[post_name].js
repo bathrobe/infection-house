@@ -2,29 +2,26 @@ import { fetcher } from "../../../lib/fetcher";
 import { getAllPosts } from "../../../lib/getAllPosts";
 
 export default function Post({ author, post }) {
+  console.log(post);
   function createMarkup(descrip) {
     return { __html: descrip };
   }
   const { name, description, avatar_url } = author;
   return (
     <div>
-      <h1>{name}</h1>
-      <img src={avatar_url} />
-      <div dangerouslySetInnerHTML={createMarkup(description)} />
-      <hr />
-      <h2></h2>
+      <h1>{post[0].title.rendered}</h1>
+      <p>{post[0].date}</p>
+      <p>{name}</p>
+      <img src={post[0].jetpack_featured_media_url} />
+      <div dangerouslySetInnerHTML={createMarkup(post[0].excerpt?.rendered)} />
+      <div dangerouslySetInnerHTML={createMarkup(post[0].content?.rendered)} />
+
       <div>
-        {/* {posts.map((p) => {
-          return (
-            <>
-              <h1>{p.post_title}</h1>
-              <p>{p.post_excerpt}</p>
-              <img src={p.featured_image} />
-              <p>{p.post_date}</p>
-              <div dangerouslySetInnerHTML={createMarkup(p.post_content)} />
-            </>
-          );
-        })} */}
+        <hr />
+        <h1>{name}</h1>
+        <img src={avatar_url} />
+        <div dangerouslySetInnerHTML={createMarkup(description)} />
+        <hr />
       </div>
     </div>
   );
