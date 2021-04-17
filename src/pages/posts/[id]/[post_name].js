@@ -1,17 +1,18 @@
 import { fetcher } from "../../../lib/fetcher";
 import { getAllPosts } from "../../../lib/getAllPosts";
 
-export default function Post({ author, post }) {
-  console.log(post);
+export default function Post({ author, post, loc, cat }) {
   function createMarkup(descrip) {
     return { __html: descrip };
   }
   const { name, description, avatar_url } = author;
   return (
     <div>
-      <h1>{post[0].title.rendered}</h1>
+      <h1 dangerouslySetInnerHTML={createMarkup(post[0].title.rendered)} />
       <p>{post[0].date}</p>
       <p>{name}</p>
+      <p>{loc.name}</p>
+      <p>{cat.name}</p>
       <img src={post[0].jetpack_featured_media_url} />
       <div dangerouslySetInnerHTML={createMarkup(post[0].excerpt?.rendered)} />
       <div dangerouslySetInnerHTML={createMarkup(post[0].content?.rendered)} />
@@ -57,10 +58,18 @@ export const getStaticProps = async ({ params }) => {
   const post = await fetcher(
     `https://infectionhouse.com/wp-json/wp/v2/posts?slug=${params.post_name}`
   );
+  const loc = await fetcher(
+    `https://infectionhouse.com/wp-json/wp/v2/location/${post[0].location[0]}`
+  );
+  const cat = await fetcher(
+    `https://infectionhouse.com/wp-json/wp/v2/categories/${post[0].categories[0]}`
+  );
   return {
     props: {
       author,
       post,
+      loc,
+      cat,
     },
   };
 };
