@@ -42,7 +42,7 @@ export default function Post({ author, post, loc, cat }) {
 
 export const getStaticPaths = async () => {
   const authors = await fetcher(
-    "https://infectionhouse.com/wp-json/guest-author/authors"
+    "https://wp-api.infectionhouse.com/wp-json/guest-author/authors"
   );
   const allPosts = await getAllPosts(authors);
 
@@ -65,16 +65,16 @@ export const getStaticProps = async ({ params }) => {
     };
   }
   const author = await fetcher(
-    `https://infectionhouse.com/wp-json/guest-author/authors?id=${params.id}`
+    `https://wp-api.infectionhouse.com/wp-json/guest-author/authors?id=${params.id}`
   );
   const post = await fetcher(
-    `https://infectionhouse.com/wp-json/wp/v2/posts?slug=${params.post_name}`
+    `https://wp-api.infectionhouse.com/wp-json/wp/v2/posts?slug=${params.post_name}`
   );
   const loc = await fetcher(
-    `https://infectionhouse.com/wp-json/wp/v2/location/${post[0].location[0]}`
+    `https://wp-api.infectionhouse.com/wp-json/wp/v2/location/${post[0].location[0]}`
   );
   const cat = await fetcher(
-    `https://infectionhouse.com/wp-json/wp/v2/categories/${post[0].categories[0]}`
+    `https://wp-api.infectionhouse.com/wp-json/wp/v2/categories/${post[0].categories[0]}`
   );
   return {
     props: {

@@ -5,7 +5,7 @@ export const getWpPosts = async (allPosts) => {
   let postsByName = [];
   for (const postName of pNames) {
     const wpPosts = await fetcher(
-      `https://infectionhouse.com/wp-json/wp/v2/posts?slug=${postName}`
+      `https://wp-api.infectionhouse.com/wp-json/wp/v2/posts?slug=${postName}`
     );
     postsByName.push(...wpPosts);
   }

@@ -19,7 +19,7 @@ export default function Home({ allPosts }) {
 
 export async function getStaticProps() {
   const authors = await fetcher(
-    "https://infectionhouse.com/wp-json/guest-author/authors"
+    "https://wp-api.infectionhouse.com/wp-json/guest-author/authors"
   );
   const allPosts = await getAllPosts(authors);
   // post.ID for allPosts gets fed into vanilla API

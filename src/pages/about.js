@@ -5,10 +5,12 @@ export default function About() {
     <Layout>
       <div className="mx-4 md:mx-64 text-center my-24">
         <p className="text-xl text-gray-700">
-          <em>Infection House</em> is a litmag about the early days of the
-          Coronavirus. It was founded by Cameron Lovejoy and Joe Holmes in
-          mid-March 2020 and ended its run that October. We have archived it
-          here for your enjoyment.
+          <em>Infection House</em> was a litmag documenting the early days of
+          COVID-19. It was founded by Cameron Lovejoy, Joe Holmes, and many of
+          their friends in mid-March 2020. The magazine ended its run that
+          October after publishing writers from all over the world. We have
+          archived it here for your enjoyment and maybe for the sake of
+          posterity.
         </p>
       </div>
     </Layout>
