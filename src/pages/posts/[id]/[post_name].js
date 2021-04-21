@@ -2,7 +2,7 @@ import { fetcher } from "../../../lib/fetcher";
 import { getAllPosts } from "../../../lib/getAllPosts";
 import Layout from "../../../components/Layout";
 import dayjs from "dayjs";
-export default function Post({ author, post, loc, cat }) {
+export default function Post({ author, authorPost, post, loc, cat }) {
   function createMarkup(descrip) {
     return { __html: descrip };
   }
@@ -20,7 +20,7 @@ export default function Post({ author, post, loc, cat }) {
         </p>
         <p className="uppercase text-lg my-4">{name}</p>{" "}
         <div className="flex"></div>
-        <img height="500px" src={post[0].jetpack_featured_media_url} />
+        <img height="500px" src={authorPost[0].featured_image} />
         <div
           className="my-4 text-xl mx-4"
           dangerouslySetInnerHTML={createMarkup(post[0].content?.rendered)}
@@ -67,6 +67,9 @@ export const getStaticProps = async ({ params }) => {
   const author = await fetcher(
     `https://wp-api.infectionhouse.com/wp-json/guest-author/authors?id=${params.id}`
   );
+  const authorPost = await fetcher(
+    `https://wp-api.infectionhouse.com/wp-json/guest-author/posts?id=${params.id}`
+  );
   const post = await fetcher(
     `https://wp-api.infectionhouse.com/wp-json/wp/v2/posts?slug=${params.post_name}`
   );
@@ -79,6 +82,7 @@ export const getStaticProps = async ({ params }) => {
   return {
     props: {
       author,
+      authorPost,
       post,
       loc,
       cat,
