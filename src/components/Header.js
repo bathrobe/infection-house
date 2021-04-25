@@ -5,7 +5,7 @@ export default function Header() {
     <header>
       <div className="flex justify-center">
         <Link href="/">
-          <a>
+          <a className="py-4">
             <img width="600" src={"/cropped-headersmaller-1.png"} />
           </a>
         </Link>

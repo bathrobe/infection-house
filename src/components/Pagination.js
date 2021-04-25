@@ -5,7 +5,7 @@ export default function Pagination({ itemsPerPage, paginate, totalItems }) {
   }
   return (
     <div>
-      <ul className="text-gray-800 flex">
+      <ul className="text-gray-800 flex hover:underline">
         {pageNumbers.map((n) => {
           return (
             <li key={n} className="mx-2">
