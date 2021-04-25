@@ -11,7 +11,7 @@ export default function Post({ author, authorPost, post, loc, cat }) {
     <Layout>
       <main className="max-w-5xl mx-auto my-16">
         <h1
-          className="text-5xl font-bold my-4"
+          className="text-5xl text-gray-700 font-bold my-4"
           dangerouslySetInnerHTML={createMarkup(post[0].title.rendered)}
         />
         <p className="text-lg my-2"></p>
