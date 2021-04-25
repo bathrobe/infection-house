@@ -25,7 +25,6 @@ export default function Post({ author, authorPost, post, loc, cat }) {
           className="my-4 text-xl mx-4"
           dangerouslySetInnerHTML={createMarkup(post[0].content?.rendered)}
         />
-        <hr className="my-16" />
         <div>
           <div className="md:flex md:items-center">
             <img src={avatar_url} />{" "}

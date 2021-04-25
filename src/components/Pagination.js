@@ -5,10 +5,10 @@ export default function Pagination({ itemsPerPage, paginate, totalItems }) {
   }
   return (
     <div>
-      <ul className="text-gray-800 flex hover:underline">
+      <ul className="text-xl flex text-blue-900">
         {pageNumbers.map((n) => {
           return (
-            <li key={n} className="mx-2">
+            <li key={n} className="mx-2 hover:underline">
               <a
                 href="#"
                 onClick={() => {
